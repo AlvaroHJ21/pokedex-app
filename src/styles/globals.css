@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.poligon {
+  clip-path: polygon(0 0, 75% 0, 100% 100%, 0% 100%);
+}
+
+.bg-gozu {
+  background-image: radial-gradient(circle at top right, rgb(36, 9, 119) 0%, rgb(36, 9, 119) 48%,rgb(72, 7, 149) 48%, rgb(72, 7, 149) 53%,rgb(109, 5, 178) 53%, rgb(109, 5, 178) 56%,rgb(145, 2, 208) 56%, rgb(145, 2, 208) 69%,rgb(181, 0, 237) 69%, rgb(181, 0, 237) 100%);
+}
+
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

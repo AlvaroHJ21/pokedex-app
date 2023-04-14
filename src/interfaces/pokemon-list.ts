@@ -11,4 +11,5 @@ export interface SmallPokemon {
     id: number;
     img: string;
     bg: string;
+    type: string;
 }

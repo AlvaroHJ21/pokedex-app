@@ -1,14 +1,14 @@
 import { GetStaticProps } from 'next';
 
 import pokeProvider from '@/utils/pokeProvider';
-import { Layout } from '@/components';
-import PokemonGrid from '@/components/PokemonGrid';
+import { Layout, PokemonGrid, PokemonSearcher } from '@/components';
 
 export default function index({ pokemons }: any) {
     return (
         <Layout>
-            <div className="pt-20 max-w-[1200px] w-[90%] m-auto">
+            <div className="pt-20 max-w-[1200px] w-[90%] m-auto flex flex-col gap-8">
 
+                <PokemonSearcher/>
                 <PokemonGrid pokemons={pokemons} />
             
             </div>
@@ -24,7 +24,7 @@ export default function index({ pokemons }: any) {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   
-    const pokemons = await pokeProvider.getSmallPokemon(40);
+    const pokemons = await pokeProvider.getSmallPokemon(151);
 
     return {
         props: {

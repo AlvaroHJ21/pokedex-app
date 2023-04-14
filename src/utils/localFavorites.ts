@@ -1,4 +1,4 @@
-import { Pokemon } from '../interfaces/pokemon-full';
+import { PokemonFull } from '../interfaces/pokemon-full';
 const toggleFavorite = (id: number) => {
     let favorites: number[] = JSON.parse(
         localStorage.getItem("favorites") || "[]"

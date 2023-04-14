@@ -32,7 +32,7 @@ export const background: { [key in PokeTypes]: string } = {
   steel: "#B7B9D0",
   fire: "#F57D31",
   water: "#6493EB",
-  grass: "#74CB48",
+  grass: "#3FA86F",
   electric: "#F9CF30",
   psychic: "#FB5584",
   ice: "#9AD6DF",

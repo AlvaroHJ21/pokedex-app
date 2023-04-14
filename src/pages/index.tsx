@@ -19,7 +19,8 @@ export default function Home() {
                     <p className="text-xl text-center">
                         You can know the type of Pokemon, its strengths, disavantages and abilities
                     </p>
-                    <Link href={'/pokemons'} className="bg-[#235FA2] py-2 px-6 rounded-lg">
+                    {/* bg-[#235FA2]  */}
+                    <Link href={'/pokemons'} className="bg-[#FFCC01] py-2 px-6 rounded-lg text-slate-900 font-bold">
                         See Pokemons
                     </Link>
                 </div>
