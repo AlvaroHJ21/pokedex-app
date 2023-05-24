@@ -5,42 +5,52 @@ import { background, PokeTypes } from './backgroundByType';
 import { PokemonInfo } from '../interfaces/pokemon-info';
 
 const getPokemonInfo = async (nameOrId: string) => {
-    try {
-        const { data } = await pokeApi.get<PokemonFull>(`/pokemon/${nameOrId}`);
+  try {
+    const { data } = await pokeApi.get<PokemonFull>(`/pokemon/${nameOrId}`);
 
-        const pokemon: PokemonInfo = {
-            id: data.id,
-            name: data.name,
-            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`,
-            sprites: data.sprites,
-            bg: background[data.types[0].type.name as PokeTypes],
+    const pokemon: PokemonInfo = {
+      id: data.id,
+      name: data.name,
+      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`,
+      sprites: data.sprites,
+      bg: background[data.types[0].type.name as PokeTypes],
+      type: data.types[0].type.name,
+      height: data.height,
+      weight: data.weight,
+      abilities: data.abilities.map((ability) => ability.ability.name),
+      stats: data.stats.map((stat) => {
+        return {
+          level: stat.base_stat,
+          name: stat.stat.name,
         };
+      }),
+    };
 
-        return pokemon;
-    } catch (error) {
-        return null;
-    }
+    return pokemon;
+  } catch (error) {
+    return null;
+  }
 };
 
 const getSmallPokemon = async (limit: number = 10) => {
-    const { data } = await pokeApi.get<PokemonListResponse>(`/pokemon?limit=${limit}`);
+  const { data } = await pokeApi.get<PokemonListResponse>(`/pokemon?limit=${limit}`);
 
-    const pokemons: SmallPokemon[] = data.results.map((pokemon, index) => {
-        return {
-            ...pokemon,
-        };
-    });
+  const pokemons: SmallPokemon[] = data.results.map((pokemon, index) => {
+    return {
+      ...pokemon,
+    };
+  });
 
-    await Promise.all(
-        pokemons.map(async (pokemon) => {
-            const { data } = await pokeApi.get<PokemonFull>(`/pokemon/${pokemon.name}`);
-            pokemon.id = data.id;
-            pokemon.bg = background[data.types[0].type.name as PokeTypes];
-            pokemon.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`;
-        })
-    );
+  await Promise.all(
+    pokemons.map(async (pokemon) => {
+      const { data } = await pokeApi.get<PokemonFull>(`/pokemon/${pokemon.name}`);
+      pokemon.id = data.id;
+      pokemon.bg = background[data.types[0].type.name as PokeTypes];
+      pokemon.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`;
+    })
+  );
 
-    return pokemons;
+  return pokemons;
 };
 
 export default { getPokemonInfo, getSmallPokemon };
