@@ -18,7 +18,7 @@ export default function PokemonHero({ pokemon }: Props) {
         <div className="flex flex-col items-end pb-8">
           <div>
             <p className="text-sm uppercase">{pokemon.type}</p>
-            <h1 className="text-6xl font-bold capitalize">{pokemon.name}</h1>
+            <h1 className="mb-4 text-6xl font-bold capitalize">{pokemon.name}</h1>
           </div>
           <div className="flex justify-between w-full">
             <p className="font-bold">Height</p>
